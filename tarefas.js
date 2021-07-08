@@ -59,4 +59,32 @@ botaoNovaTarefaEl.addEventListener("click", e => {
     };
     tarefas.push(tarefa);
     insereTarefaNaPagina(tarefa);
+
+    nomeEL.focus();
+});
+
+// Exercício opcional 3
+const filtroCategoriaEl = document.querySelector("#filtro-de-categoria");
+
+filtroCategoriaEl.addEventListener("change", e => {
+    const categoria = e.currentTarget.value;
+    const listaTarefas = document.querySelectorAll(".item-tarefa");
+
+    if(categoria === ""){
+        listaTarefas.forEach(tarefa => {
+            tarefa.classList.remove("retido-no-filtro");
+        });
+        return;
+    }
+
+    const tarefasFiltradas = Array.from(listaTarefas).filter(evt => {
+        return evt.classList.contains(`categoria-${categoria}`);
+    });
+
+    listaTarefas.forEach(tarefa => {
+        tarefa.classList.add("retido-no-filtro");
+    });
+    tarefasFiltradas.forEach(tarefa => {
+        tarefa.classList.remove("retido-no-filtro");
+    })
 });
