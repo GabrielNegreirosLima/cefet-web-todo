@@ -48,7 +48,7 @@ tarefas.forEach(insereTarefaNaPagina);
 
 // Exercício 2
 const botaoNovaTarefaEl = document.querySelector("#incluir-nova-tarefa");
-botaoNovaTarefaEl.addEventListener("click", e => {
+const insereNoVetorEPagina = e => {
     const nomeEL = document.querySelector("#nova-tarefa-nome");
     const categoriaEl = document.querySelector("#nova-tarefa-categoria");
     
@@ -61,7 +61,8 @@ botaoNovaTarefaEl.addEventListener("click", e => {
     insereTarefaNaPagina(tarefa);
 
     nomeEL.focus();
-});
+}
+botaoNovaTarefaEl.addEventListener("click", insereNoVetorEPagina);
 
 // Exercício opcional 3
 const filtroCategoriaEl = document.querySelector("#filtro-de-categoria");
@@ -87,4 +88,20 @@ filtroCategoriaEl.addEventListener("change", e => {
     tarefasFiltradas.forEach(tarefa => {
         tarefa.classList.remove("retido-no-filtro");
     })
+});
+
+// Exercicio opcional 4
+const nomeEL = document.querySelector("#nova-tarefa-nome");
+nomeEL.addEventListener("keyup", e => {
+    if(e.key === "Enter"){
+        insereNoVetorEPagina(e);
+    }
+});
+
+// Exercicio opcional 5
+const listaTarefas = document.querySelectorAll(".item-tarefa");
+listaTarefas.forEach( el => {
+    el.addEventListener("click", e => {
+        e.currentTarget.classList.toggle("marcado");
+    });
 });
